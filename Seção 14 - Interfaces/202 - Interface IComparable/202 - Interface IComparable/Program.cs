@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace _202___Interface_IComparable {
+    class Program {
+        static void Main(string[] args) {
+
+            string path = @"C:\Users\Henrique Muchenski\Desktop\anotacoes\C#\Seção 14 - Interfaces\202 - Interface IComparable\202 - Interface IComparable\a.txt";
+            try {
+                using(StreamReader sr = File.OpenText(path)) {
+                    List<Employee> list = new List<Employee>();
+                    while(!sr.EndOfStream) {
+                        list.Add(new Employee(sr.ReadLine()));
+                    }
+                    list.Sort();
+                    foreach(Employee employee in list) {
+                        Console.WriteLine(employee);
+                    }
+                }
+            }
+            catch(IOException e) {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+        }
+    }
+}

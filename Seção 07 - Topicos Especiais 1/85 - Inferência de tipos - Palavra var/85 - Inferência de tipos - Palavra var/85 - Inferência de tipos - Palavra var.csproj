@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>_85___Inferência_de_tipos___Palavra_var</RootNamespace>
+  </PropertyGroup>
+
+</Project>

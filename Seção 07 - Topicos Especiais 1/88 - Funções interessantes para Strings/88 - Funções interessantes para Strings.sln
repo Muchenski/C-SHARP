@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "88 - Funções interessantes para Strings", "88 - Funções interessantes para Strings\88 - Funções interessantes para Strings.csproj", "{AB96508B-F7E9-4C52-91C8-FC7706D80C02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB96508B-F7E9-4C52-91C8-FC7706D80C02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB96508B-F7E9-4C52-91C8-FC7706D80C02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB96508B-F7E9-4C52-91C8-FC7706D80C02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB96508B-F7E9-4C52-91C8-FC7706D80C02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51835950-E00C-474A-8D43-59B907732EA0}
+	EndGlobalSection
+EndGlobal

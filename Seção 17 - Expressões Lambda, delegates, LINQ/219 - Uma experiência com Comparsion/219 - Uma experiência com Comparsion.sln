@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "219 - Uma experiência com Comparsion", "219 - Uma experiência com Comparsion\219 - Uma experiência com Comparsion.csproj", "{A09D4E8A-1B39-4C09-825F-D37FC572932F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A09D4E8A-1B39-4C09-825F-D37FC572932F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09D4E8A-1B39-4C09-825F-D37FC572932F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09D4E8A-1B39-4C09-825F-D37FC572932F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09D4E8A-1B39-4C09-825F-D37FC572932F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F9B002D-C4E9-462A-8038-CF7FF5FBCD9D}
+	EndGlobalSection
+EndGlobal
