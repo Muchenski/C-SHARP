@@ -31,5 +31,7 @@ namespace Board_ns
         {
             AmountOfMovements++;
         }
+
+        public abstract bool[,] PossibleMovements();
     }
 }

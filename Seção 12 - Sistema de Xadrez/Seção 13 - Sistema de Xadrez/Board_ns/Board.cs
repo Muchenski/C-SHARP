@@ -1,4 +1,5 @@
 ﻿using Board_ns.exceptions;
+using Chess_ns;
 
 namespace Board_ns
 {
@@ -53,13 +54,22 @@ namespace Board_ns
 
         public bool PositionAlreadyOccupied(Position position)
         {
-            ValidatePosition(position);
+            PositionExceptionCheck(position);
             return GetPiece(position) != null;
         }
 
-        public void ValidatePosition(Position position)
+        public bool ValidPosition(Position position)
         {
             if(position.Row >= Rows || position.Collumn >= Columns || position.Row < 0 || position.Collumn < 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void PositionExceptionCheck(Position position)
+        {
+            if(!ValidPosition(position))
             {
                 throw new BoardException("Invalid Position!");
             }

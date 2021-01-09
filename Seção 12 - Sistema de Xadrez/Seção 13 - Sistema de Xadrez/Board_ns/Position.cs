@@ -17,6 +17,12 @@ namespace Board_ns
             Collumn = collumn;
         }
 
+        public void UpdateValues(int row, int collumn)
+        {
+            Row = row;
+            Collumn = collumn;
+        }
+
         public override string ToString()
         {
             return $"{Row},{Collumn}";
