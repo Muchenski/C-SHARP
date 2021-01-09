@@ -19,6 +19,7 @@ namespace Board_ns
 
         public Position ChessPositionToMatrixPosition()
         {
+            // https://www.asciitable.com/
             return new Position(8 - Row, Column - 'a');
         }
 

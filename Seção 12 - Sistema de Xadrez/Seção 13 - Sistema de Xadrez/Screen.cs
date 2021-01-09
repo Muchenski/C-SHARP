@@ -11,6 +11,8 @@ namespace Seção_12___Sistema_de_Xadrez
 
             for(int i = 0; i < board.Rows; i++)
             {
+                Console.Write(8 - i + " ");
+
                 for(int j = 0; j < board.Columns; j++)
                 {
 
@@ -18,7 +20,8 @@ namespace Seção_12___Sistema_de_Xadrez
 
                     if(piece != null)
                     {
-                        Console.Write(piece + " ");
+                        PrintPiece(piece);
+                        Console.Write(" ");
                     }
                     else
                     {
@@ -26,6 +29,22 @@ namespace Seção_12___Sistema_de_Xadrez
                     }
                 }
                 Console.WriteLine();
+            }
+            Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static void PrintPiece(Piece piece)
+        {
+            if(piece.Color == Color.White)
+            {
+                Console.Write(piece);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(piece);
+                Console.ForegroundColor = aux;
             }
         }
     }
