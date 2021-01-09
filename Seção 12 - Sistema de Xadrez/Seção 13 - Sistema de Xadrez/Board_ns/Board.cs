@@ -20,5 +20,10 @@ namespace Board_ns
             Columns = columns;
             Pieces = new Piece[rows, columns];
         }
+
+        public Piece GetPiece(Position position)
+        {
+            return Pieces[position.Row, position.Collumn];
+        }
     }
 }
