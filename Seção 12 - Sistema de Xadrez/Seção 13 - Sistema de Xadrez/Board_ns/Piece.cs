@@ -2,7 +2,7 @@
 
 namespace Board_ns
 {
-    class Piece
+    abstract class Piece
     {
         public Position Position { get; set; }
 
@@ -20,11 +20,11 @@ namespace Board_ns
             AmountOfMovements = 0;
         }
 
-        public Piece(Position position, Color color, int amountOfMovements, Board board)
+        public Piece(Color color, Board board)
         {
-            Position = position;
             Color = color;
             Board = board;
+            Position = null;
         }
     }
 }

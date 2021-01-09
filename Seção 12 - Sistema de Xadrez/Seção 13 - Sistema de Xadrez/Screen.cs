@@ -7,17 +7,22 @@ namespace Seção_12___Sistema_de_Xadrez
     {
         public static void PrintBoard(Board board)
         {
+            Piece piece;
+
             for(int i = 0; i < board.Rows; i++)
             {
                 for(int j = 0; j < board.Columns; j++)
                 {
-                    if(board.GetPiece(new Position(i, j)) == null)
+
+                    piece = board.GetPiece(new Position(i, j));
+
+                    if(piece != null)
                     {
-                        Console.Write(board.GetPiece(new Position(i, j)) + "- ");
+                        Console.Write(piece + " ");
                     }
                     else
                     {
-                        Console.WriteLine("- ");
+                        Console.Write("- ");
                     }
                 }
                 Console.WriteLine();
