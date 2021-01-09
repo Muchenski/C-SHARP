@@ -37,6 +37,20 @@ namespace Board_ns
             piece.Position = position;
         }
 
+        public Piece RemovePiece(Position position)
+        {
+            Piece piece = GetPiece(position);
+
+            if(piece == null)
+            {
+                return null;
+            }
+
+            piece.Position = null;
+            Pieces[position.Row, position.Collumn] = null;
+            return piece;
+        }
+
         public bool PositionAlreadyOccupied(Position position)
         {
             ValidatePosition(position);

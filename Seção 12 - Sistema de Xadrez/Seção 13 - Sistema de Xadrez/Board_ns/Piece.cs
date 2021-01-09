@@ -26,5 +26,10 @@ namespace Board_ns
             Board = board;
             Position = null;
         }
+
+        public void IncreaseMovementsAmount()
+        {
+            AmountOfMovements++;
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Board_ns;
-
+﻿
 namespace Board_ns
 {
     class ChessPosition

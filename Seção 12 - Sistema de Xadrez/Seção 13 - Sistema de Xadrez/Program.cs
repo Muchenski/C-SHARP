@@ -11,12 +11,23 @@ namespace Seção_12___Sistema_de_Xadrez
         {
             try
             {
-                Board b = new Board(8, 8);
-                b.SetPiece(new Tower(Color.Black, b), new Position(0, 0));
-                b.SetPiece(new Tower(Color.White, b), new Position(1, 3));
-                b.SetPiece(new King(Color.Black, b), new Position(0, 2));
-                b.SetPiece(new Tower(Color.White, b), new Position(3, 5));
-                Screen.PrintBoard(b);
+                ChessMatch cm = new ChessMatch();
+
+                do
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(cm.board);
+
+                    Console.WriteLine("\nEnter the origin position: ");
+                    Position origin = Screen.InputChessPositions().ChessPositionToMatrixPosition();
+
+                    Console.WriteLine("\nEnter the destiny position: ");
+                    Position destiny = Screen.InputChessPositions().ChessPositionToMatrixPosition();
+
+                    cm.MovePiece(origin, destiny);
+
+                } while(!cm.Finished);
+
 
             } catch(BoardException e)
             {

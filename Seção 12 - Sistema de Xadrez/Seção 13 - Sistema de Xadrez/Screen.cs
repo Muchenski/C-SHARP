@@ -47,5 +47,11 @@ namespace Seção_12___Sistema_de_Xadrez
                 Console.ForegroundColor = aux;
             }
         }
+
+        public static ChessPosition InputChessPositions()
+        {
+            string origin = Console.ReadLine();
+            return new ChessPosition(origin[0], int.Parse(origin[1] + ""));
+        }
     }
 }
