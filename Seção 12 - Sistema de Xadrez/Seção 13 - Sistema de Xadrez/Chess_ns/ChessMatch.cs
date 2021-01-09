@@ -1,12 +1,13 @@
 ﻿using Board_ns;
+using Board_ns.exceptions;
 
 namespace Chess_ns
 {
     class ChessMatch
     {
         public Board Board { get; private set; }
-        private int Turn { get; set; }
-        private Color CurrentPlayer { get; set; }
+        public int Turn { get; private set; }
+        public Color CurrentPlayer { get; private set; }
         public bool Finished { get; private set; }
 
         public ChessMatch()
@@ -25,7 +26,49 @@ namespace Chess_ns
 
             Board.SetPiece(pieceOnMovement, destiny);
             pieceOnMovement.IncreaseMovementsAmount();
+        }
+
+        public void MakeMove(Position origin, Position destiny)
+        {
+            MovePiece(origin, destiny);
             Turn++;
+            ChangePlayer();
+        }
+
+        public void ValidateOrigin(Position position)
+        {
+            if(Board.GetPiece(position) == null)
+            {
+                throw new BoardException("There are no pieces in the chosen position!");
+            }
+            if(CurrentPlayer != Board.GetPiece(position).Color)
+            {
+                throw new BoardException("The chosen piece is not yours!");
+            }
+            if(!Board.GetPiece(position).ThereArePossibleMovements())
+            {
+                throw new BoardException("There are no possible moves for the chosen piece!");
+            }
+        }
+
+        public void ValidateDestiny(Position origin, Position destiny)
+        {
+            if(!Board.GetPiece(origin).CanMoveToTheDestiny(destiny))
+            {
+                throw new BoardException("Invalid destiny position!");
+            }
+        }
+
+        public void ChangePlayer()
+        {
+            if(CurrentPlayer == Color.Black)
+            {
+                CurrentPlayer = Color.White;
+            }
+            else
+            {
+                CurrentPlayer = Color.Black;
+            }
         }
 
         public void SeedingPieces()

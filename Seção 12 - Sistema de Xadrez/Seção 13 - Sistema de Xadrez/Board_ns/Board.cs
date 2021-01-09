@@ -25,6 +25,7 @@ namespace Board_ns
 
         public Piece GetPiece(Position position)
         {
+            //PositionExceptionCheck(position);
             return Pieces[position.Row, position.Collumn];
         }
 

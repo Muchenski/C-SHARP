@@ -31,7 +31,7 @@ namespace Chess_ns
 
             // Checking Northwest
             currentPosition.UpdateValues(Position.Row - 1, Position.Collumn - 1);
-            if(CanMove(currentPosition) && Board.ValidPosition(currentPosition))
+            if(Board.ValidPosition(currentPosition) && CanMove(currentPosition))
             {
                 matrix[currentPosition.Row, currentPosition.Collumn] = true;
             }
