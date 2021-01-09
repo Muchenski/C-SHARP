@@ -1,5 +1,5 @@
 ﻿using System;
-using tabuleiro;
+using Board_ns;
 
 namespace Seção_12___Sistema_de_Xadrez
 {
@@ -7,8 +7,7 @@ namespace Seção_12___Sistema_de_Xadrez
     {
         static void Main(string[] args)
         {
-            Position p = new Position(3, 4);
-            Console.WriteLine(p);
+            Board b = new Board(8, 8);
         }
     }
 }

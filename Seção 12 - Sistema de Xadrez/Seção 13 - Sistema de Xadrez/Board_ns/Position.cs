@@ -1,5 +1,5 @@
 ﻿
-namespace tabuleiro
+namespace Board_ns
 {
     class Position
     {
