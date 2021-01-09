@@ -11,13 +11,9 @@ namespace Seção_12___Sistema_de_Xadrez
         {
             try
             {
-                Board b = new Board(8, 8);
-
-                b.SetPiece(new Tower(Color.Black, b), new Position(0, 0));
-                b.SetPiece(new Tower(Color.Black, b), new Position(1, 3));
-                b.SetPiece(new King(Color.Black, b), new Position(2, 4));
-
-                Screen.PrintBoard(b);
+                ChessPosition cp = new ChessPosition('c', 7);
+                Console.WriteLine(cp);
+                Console.WriteLine(cp.ChessPositionToMatrixPosition());
 
             } catch(BoardException e)
             {
