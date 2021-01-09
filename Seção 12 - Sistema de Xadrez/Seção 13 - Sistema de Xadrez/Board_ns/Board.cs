@@ -1,4 +1,5 @@
-﻿
+﻿using Board_ns.exceptions;
+
 namespace Board_ns
 {
     class Board
@@ -28,8 +29,26 @@ namespace Board_ns
 
         public void SetPiece(Piece piece, Position position)
         {
+            if(PositionAlreadyOccupied(position))
+            {
+                throw new BoardException("There's already a piece in that position!");
+            }
             Pieces[position.Row, position.Collumn] = piece;
             piece.Position = position;
+        }
+
+        public bool PositionAlreadyOccupied(Position position)
+        {
+            ValidatePosition(position);
+            return GetPiece(position) != null;
+        }
+
+        public void ValidatePosition(Position position)
+        {
+            if(position.Row >= Rows || position.Collumn >= Columns || position.Row < 0 || position.Collumn < 0)
+            {
+                throw new BoardException("Invalid Position!");
+            }
         }
     }
 }
