@@ -1,10 +1,42 @@
 ﻿using System;
+using System.Collections.Generic;
 using Board_ns;
+using Chess_ns;
 
 namespace Seção_12___Sistema_de_Xadrez
 {
     class Screen
     {
+
+        public static void PrintChessMatch(ChessMatch chessMatch)
+        {
+            PrintBoard(chessMatch.Board);
+            printCapturedPieces(chessMatch);
+            Console.WriteLine($"\nTurn: {chessMatch.Turn}\nWaiting for >> {chessMatch.CurrentPlayer}'s <<");
+        }
+
+        public static void printCapturedPieces(ChessMatch chessMatch)
+        {
+            Console.WriteLine("\nCaptured pieces: ");
+            Console.WriteLine("White:");
+            printSetPieces(chessMatch.GetCapturedPieces(Color.White));
+            Console.WriteLine("Black:");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red; 
+            printSetPieces(chessMatch.GetCapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+        }
+
+        public static void printSetPieces(HashSet<Piece> pieces)
+        {
+            Console.Write("[");
+            foreach(Piece piece in pieces)
+            {
+                Console.Write(piece + " ");
+            }
+            Console.WriteLine("]");
+        }
+
         public static void PrintBoard(Board board)
         {
             Piece piece;

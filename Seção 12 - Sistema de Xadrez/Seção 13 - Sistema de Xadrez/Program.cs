@@ -10,7 +10,7 @@ namespace Seção_12___Sistema_de_Xadrez
         static void Main(string[] args)
         {
 
-            ChessMatch cm = new ChessMatch();
+            ChessMatch chessMatch = new ChessMatch();
             try
             {
                 do
@@ -18,22 +18,22 @@ namespace Seção_12___Sistema_de_Xadrez
                     try
                     {
                         Console.Clear();
-                        Screen.PrintBoard(cm.Board);
-                        Console.WriteLine($"\nTurn: {cm.Turn}\nWaiting for >> {cm.CurrentPlayer}'s <<");
-
+                        Screen.PrintChessMatch(chessMatch);
                         Console.WriteLine("\nEnter the origin position: ");
                         Position origin = Screen.InputChessPositions().ChessPositionToMatrixPosition();
-                        cm.ValidateOrigin(origin);
+                        Console.WriteLine();
+                        chessMatch.ValidateOrigin(origin);
 
                         Console.Clear();
 
-                        bool[,] possiblePositions = cm.Board.GetPiece(origin).PossibleMovements();
-                        Screen.PrintBoard(cm.Board, possiblePositions);
+                        bool[,] possiblePositions = chessMatch.Board.GetPiece(origin).PossibleMovements();
+                        Screen.PrintBoard(chessMatch.Board, possiblePositions);
 
                         Console.WriteLine("\nEnter the destiny position: ");
                         Position destiny = Screen.InputChessPositions().ChessPositionToMatrixPosition();
-                        cm.ValidateDestiny(origin, destiny);
-                        cm.MakeMove(origin, destiny);
+                        Console.WriteLine();
+                        chessMatch.ValidateDestiny(origin, destiny);
+                        chessMatch.MakeMove(origin, destiny);
 
                     }
                     catch(BoardException e)
@@ -42,7 +42,7 @@ namespace Seção_12___Sistema_de_Xadrez
                         Console.ReadKey();
                     }
 
-                } while(!cm.Finished);
+                } while(!chessMatch.Finished);
             }
             catch(BoardException e)
             {
