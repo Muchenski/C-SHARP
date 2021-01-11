@@ -43,6 +43,8 @@ namespace Seção_12___Sistema_de_Xadrez
                     }
 
                 } while(!chessMatch.Finished);
+                Console.Clear();
+                Screen.PrintChessMatch(chessMatch);
             }
             catch(BoardException e)
             {

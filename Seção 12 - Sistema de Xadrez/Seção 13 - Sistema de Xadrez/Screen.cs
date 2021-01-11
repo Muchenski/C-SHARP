@@ -12,7 +12,6 @@ namespace Seção_12___Sistema_de_Xadrez
         {
             PrintBoard(chessMatch.Board);
             printCapturedPieces(chessMatch);
-            Console.WriteLine($"\nTurn: {chessMatch.Turn}\nWaiting for >> {chessMatch.CurrentPlayer}'s <<");
         }
 
         public static void printCapturedPieces(ChessMatch chessMatch)
@@ -25,10 +24,20 @@ namespace Seção_12___Sistema_de_Xadrez
             Console.ForegroundColor = ConsoleColor.Red; 
             printSetPieces(chessMatch.GetCapturedPieces(Color.Black));
             Console.ForegroundColor = aux;
-            if(chessMatch.Check)
+            if(!chessMatch.Finished)
             {
-                Console.WriteLine("You are on check!");
+                if(chessMatch.Check)
+                {
+                    Console.WriteLine("You are on check!");
+                }
+                Console.WriteLine($"\nTurn: {chessMatch.Turn}\nWaiting for >> {chessMatch.CurrentPlayer}'s <<");
             }
+            else
+            {
+                Console.WriteLine("Check Mate!");
+                Console.WriteLine("Winner: " + chessMatch.CurrentPlayer);
+            }
+            
         } 
 
         public static void printSetPieces(HashSet<Piece> pieces)

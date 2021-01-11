@@ -70,6 +70,37 @@ namespace Chess_ns
             return false;
         }
 
+        public bool CheckMate(Color color)
+        {
+            if(!IsInCheck(color))
+            {
+                return false;
+            }
+            foreach(Piece piece in GetPiecesInPlay(color))
+            {
+                bool[,] possibleMovements = piece.PossibleMovements();
+                for(int i = 0; i < Board.Rows; i++)
+                {
+                    for(int j = 0; j < Board.Columns; j++)
+                    {
+                        if(possibleMovements[i, j])
+                        {
+                            Position origin = piece.Position;
+                            Position destiny = new Position(i, j);
+                            Piece capturedPiece = MovePiece(piece.Position, destiny);
+                            bool Check = IsInCheck(color);
+                            UndoMove(origin, destiny, capturedPiece);
+                            if(!Check)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public Piece MovePiece(Position origin, Position destiny)
         {
             Piece pieceOnMovement = Board.RemovePiece(origin);
@@ -104,8 +135,15 @@ namespace Chess_ns
                 Check = false;
             }
 
-            Turn++;
-            ChangePlayer();
+            if(CheckMate(OpponentColor(CurrentPlayer)))
+            {
+                Finished = true;
+            }
+            else
+            {
+                Turn++;
+                ChangePlayer();
+            }
         }
 
         public void UndoMove(Position origin, Position destiny, Piece capturedPiece)
@@ -191,6 +229,7 @@ namespace Chess_ns
 
         public void SeedingPieces()
         {
+            /*
             PutNewPiece(new Tower(Color.White, Board), new ChessPosition('c', 1));
             PutNewPiece(new Tower(Color.White, Board), new ChessPosition('c', 2));
             PutNewPiece(new King(Color.White, Board), new ChessPosition('d', 1));
@@ -204,6 +243,14 @@ namespace Chess_ns
             PutNewPiece(new King(Color.Black, Board), new ChessPosition('d', 8));
             PutNewPiece(new Tower(Color.Black, Board), new ChessPosition('e', 7));
             PutNewPiece(new Tower(Color.Black, Board), new ChessPosition('e', 8));
+            */
+
+            PutNewPiece(new Tower(Color.White, Board), new ChessPosition('c', 1));
+            PutNewPiece(new King(Color.White, Board), new ChessPosition('d', 1));
+            PutNewPiece(new Tower(Color.White, Board), new ChessPosition('h', 7));
+
+            PutNewPiece(new King(Color.Black, Board), new ChessPosition('a', 8));
+            PutNewPiece(new Tower(Color.Black, Board), new ChessPosition('b', 8));
         }
     }
 }
