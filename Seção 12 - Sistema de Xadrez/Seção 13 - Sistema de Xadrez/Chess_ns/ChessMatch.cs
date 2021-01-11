@@ -14,6 +14,8 @@ namespace Chess_ns
         private HashSet<Piece> AllPieces = new HashSet<Piece>();
         private HashSet<Piece> CapturedPieces = new HashSet<Piece>();
 
+        public bool Check { get; set; } = false;
+
         public ChessMatch()
         {
             Finished = false;
@@ -23,7 +25,52 @@ namespace Chess_ns
             SeedingPieces();
         }
 
-        public void MovePiece(Position origin, Position destiny)
+        private Color OpponentColor(Color color)
+        {
+            if(color == Color.Black)
+            {
+                return Color.White;
+            }
+            else
+            {
+                return Color.Black;
+            }
+        }
+
+        private Piece GetKing(Color color)
+        {
+            foreach(Piece piece in GetPiecesInPlay(color))
+            {
+                if(piece is King)
+                {
+                    return piece;
+                }
+            }
+            return null;
+        }
+
+        public bool IsInCheck(Color color)
+        {
+            Piece king = GetKing(color);
+
+            if(king == null)
+            {
+                throw new BoardException($"There is no king of the color {color} on the board.");
+            }
+
+            foreach(Piece piece in GetPiecesInPlay(OpponentColor(color)))
+            {
+                bool[,] possibleMovements = piece.PossibleMovements();
+                if(possibleMovements[king.Position.Row, king.Position.Collumn])
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Piece MovePiece(Position origin, Position destiny)
         {
             Piece pieceOnMovement = Board.RemovePiece(origin);
             Piece capturedPiece = Board.RemovePiece(destiny);
@@ -35,13 +82,42 @@ namespace Chess_ns
             {
                 CapturedPieces.Add(capturedPiece);
             }
+
+            return capturedPiece;
         }
 
         public void MakeMove(Position origin, Position destiny)
         {
-            MovePiece(origin, destiny);
+            Piece capturedPiece = MovePiece(origin, destiny);
+            if(IsInCheck(CurrentPlayer))
+            {
+                UndoMove(origin, destiny, capturedPiece);
+                throw new BoardException("You can't put yourself in check!");
+            }
+
+            if(IsInCheck(OpponentColor(CurrentPlayer)))
+            {
+                Check = true;
+            }
+            else
+            {
+                Check = false;
+            }
+
             Turn++;
             ChangePlayer();
+        }
+
+        public void UndoMove(Position origin, Position destiny, Piece capturedPiece)
+        {
+            Piece movedPiece = Board.RemovePiece(destiny);
+            movedPiece.DecreaseMovementsAmount();
+            if(capturedPiece != null)
+            {
+                Board.SetPiece(capturedPiece, destiny);
+                CapturedPieces.Remove(capturedPiece);
+            }
+            Board.SetPiece(movedPiece, origin);
         }
 
         public void ValidateOrigin(Position position)
@@ -83,7 +159,7 @@ namespace Chess_ns
         public HashSet<Piece> GetPiecesInPlay(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
-            foreach(Piece piece in CapturedPieces)
+            foreach(Piece piece in AllPieces)
             {
                 if(piece.Color == color)
                 {

@@ -32,6 +32,11 @@ namespace Board_ns
             AmountOfMovements++;
         }
 
+        public void DecreaseMovementsAmount()
+        {
+            AmountOfMovements--;
+        }
+
         public bool ThereArePossibleMovements()
         {
             for(int i = 0; i < Board.Rows; i++)
