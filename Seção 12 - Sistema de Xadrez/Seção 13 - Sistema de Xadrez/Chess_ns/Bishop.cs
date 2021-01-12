@@ -2,9 +2,10 @@
 
 namespace Chess_ns
 {
-    class Tower:Piece
+    class Bishop:Piece
     {
-        public Tower(Board board, Color color) : base(board, color)
+
+        public Bishop(Board board, Color color) : base(board, color)
         {
 
         }
@@ -15,8 +16,8 @@ namespace Chess_ns
 
             Position currentPosition = new Position(0, 0);
 
-            // Checking North 
-            currentPosition.UpdateValues(Position.Row - 1, Position.Collumn);
+            // Checking Northeast 
+            currentPosition.UpdateValues(Position.Row - 1, Position.Collumn + 1);
             while(Board.ValidPosition(currentPosition) && CanMove(currentPosition))
             {
                 matrix[currentPosition.Row, currentPosition.Collumn] = true;
@@ -25,22 +26,11 @@ namespace Chess_ns
                     break;
                 }
                 currentPosition.Row--;
+                currentPosition.Collumn++;
             }
 
-            // Checking South 
-            currentPosition.UpdateValues(Position.Row + 1, Position.Collumn);
-            while(Board.ValidPosition(currentPosition) && CanMove(currentPosition))
-            {
-                matrix[currentPosition.Row, currentPosition.Collumn] = true;
-                if(Board.GetPiece(currentPosition) != null && Board.GetPiece(currentPosition).Color != Color)
-                {
-                    break;
-                }
-                currentPosition.Row++;
-            }
-
-            // Checking Left
-            currentPosition.UpdateValues(Position.Row, Position.Collumn - 1);
+            // Checking Northwest 
+            currentPosition.UpdateValues(Position.Row - 1, Position.Collumn - 1);
             while(Board.ValidPosition(currentPosition) && CanMove(currentPosition))
             {
                 matrix[currentPosition.Row, currentPosition.Collumn] = true;
@@ -49,10 +39,11 @@ namespace Chess_ns
                     break;
                 }
                 currentPosition.Collumn--;
+                currentPosition.Row--;
             }
 
-            // Checking Right
-            currentPosition.UpdateValues(Position.Row, Position.Collumn + 1);
+            // Checking Southeast
+            currentPosition.UpdateValues(Position.Row + 1, Position.Collumn + 1);
             while(Board.ValidPosition(currentPosition) && CanMove(currentPosition))
             {
                 matrix[currentPosition.Row, currentPosition.Collumn] = true;
@@ -61,21 +52,36 @@ namespace Chess_ns
                     break;
                 }
                 currentPosition.Collumn++;
+                currentPosition.Row++;
+            }
+
+            // Checking Southwest
+            currentPosition.UpdateValues(Position.Row + 1, Position.Collumn - 1);
+            while(Board.ValidPosition(currentPosition) && CanMove(currentPosition))
+            {
+                matrix[currentPosition.Row, currentPosition.Collumn] = true;
+                if(Board.GetPiece(currentPosition) != null && Board.GetPiece(currentPosition).Color != Color)
+                {
+                    break;
+                }
+                currentPosition.Collumn--;
+                currentPosition.Row++;
             }
 
             return matrix;
         }
 
+
         public bool CanMove(Position position)
         {
             // if there's no piece on the destiny position, or there's a adversary piece.
             Piece piece = Board.GetPiece(position);
-            return (piece == null || piece.Color != Color);
+            return piece == null || piece.Color != Color;
         }
 
         public override string ToString()
         {
-            return "T";
+            return "B";
         }
     }
 }

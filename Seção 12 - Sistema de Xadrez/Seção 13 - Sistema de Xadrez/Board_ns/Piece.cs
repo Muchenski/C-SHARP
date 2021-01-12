@@ -20,7 +20,7 @@ namespace Board_ns
             AmountOfMovements = 0;
         }
 
-        public Piece(Color color, Board board)
+        public Piece(Board board, Color color)
         {
             Color = color;
             Board = board;
