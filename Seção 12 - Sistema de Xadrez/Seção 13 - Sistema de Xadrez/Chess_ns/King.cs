@@ -5,7 +5,7 @@ namespace Chess_ns
     class King:Piece
     {
 
-        private ChessMatch ChessMatch;
+        private readonly ChessMatch ChessMatch;
 
         public King(Board board, Color color, ChessMatch chessMatch) : base(board, color)
         {

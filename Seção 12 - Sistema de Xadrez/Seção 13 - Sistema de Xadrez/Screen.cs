@@ -11,18 +11,18 @@ namespace Seção_12___Sistema_de_Xadrez
         public static void PrintChessMatch(ChessMatch chessMatch)
         {
             PrintBoard(chessMatch.Board);
-            printCapturedPieces(chessMatch);
+            PrintCapturedPieces(chessMatch);
         }
 
-        public static void printCapturedPieces(ChessMatch chessMatch)
+        public static void PrintCapturedPieces(ChessMatch chessMatch)
         {
             Console.WriteLine("\nCaptured pieces: ");
             Console.WriteLine("White:");
-            printSetPieces(chessMatch.GetCapturedPieces(Color.White));
+            PrintSetPieces(chessMatch.GetCapturedPieces(Color.White));
             Console.WriteLine("Black:");
             ConsoleColor aux = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red; 
-            printSetPieces(chessMatch.GetCapturedPieces(Color.Black));
+            Console.ForegroundColor = ConsoleColor.Red;
+            PrintSetPieces(chessMatch.GetCapturedPieces(Color.Black));
             Console.ForegroundColor = aux;
             if(!chessMatch.Finished)
             {
@@ -40,7 +40,7 @@ namespace Seção_12___Sistema_de_Xadrez
             
         } 
 
-        public static void printSetPieces(HashSet<Piece> pieces)
+        public static void PrintSetPieces(HashSet<Piece> pieces)
         {
             Console.Write("[");
             foreach(Piece piece in pieces)
