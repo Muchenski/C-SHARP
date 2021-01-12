@@ -166,6 +166,20 @@ namespace Chess_ns
                 throw new BoardException("You can't put yourself in check!");
             }
 
+            Piece piece = Board.GetPiece(destiny);
+            // Promotion
+            if(piece is Pawn)
+            {
+                if(piece.Color == Color.White && destiny.Row == 0 || piece.Color == Color.Black && destiny.Row == 7)
+                {
+                    piece = Board.RemovePiece(destiny);
+                    AllPieces.Remove(piece);
+                    Piece queen = new Queen(Board, piece.Color);
+                    Board.SetPiece(queen, destiny);
+                    AllPieces.Add(queen);
+                }
+            }
+
             if(IsInCheck(OpponentColor(CurrentPlayer)))
             {
                 Check = true;
@@ -185,7 +199,6 @@ namespace Chess_ns
                 ChangePlayer();
             }
 
-            Piece piece = Board.GetPiece(destiny);
             //En Passant
             if(piece is Pawn && (destiny.Row == origin.Row - 2 || destiny.Row == origin.Row + 2))
             {
@@ -350,7 +363,7 @@ namespace Chess_ns
             PutNewPiece(new ChessPosition('f', 7), new Pawn(Board, Color.Black, this));
             PutNewPiece(new ChessPosition('g', 7), new Pawn(Board, Color.Black, this));
             PutNewPiece(new ChessPosition('h', 7), new Pawn(Board, Color.Black, this));
-
+ 
         }
     }
 }

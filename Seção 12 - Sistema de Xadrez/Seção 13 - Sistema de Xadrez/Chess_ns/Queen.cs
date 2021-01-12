@@ -29,6 +29,7 @@ namespace Chess_ns
                     break;
                 }
                 currentPosition.Row--;
+                currentPosition.Collumn++;
             }
 
             // Checking Northwest 
@@ -40,7 +41,8 @@ namespace Chess_ns
                 {
                     break;
                 }
-                currentPosition.Row++;
+                currentPosition.Collumn--;
+                currentPosition.Row--;
             }
 
             // Checking Southeast
@@ -52,7 +54,8 @@ namespace Chess_ns
                 {
                     break;
                 }
-                currentPosition.Collumn--;
+                currentPosition.Collumn++;
+                currentPosition.Row++;
             }
 
             // Checking Southwest
@@ -64,7 +67,8 @@ namespace Chess_ns
                 {
                     break;
                 }
-                currentPosition.Collumn++;
+                currentPosition.Collumn--;
+                currentPosition.Row++;
             }
 
             // Checking North 
